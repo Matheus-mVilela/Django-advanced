@@ -1,1 +1,1 @@
-# Django-advanced
+Iniciando projeto django-adjanced.
