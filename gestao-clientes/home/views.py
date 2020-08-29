@@ -3,7 +3,12 @@ from django.contrib.auth import logout
 
 
 def home(request):
-    return render(request, 'home.html')
+    import pdb; 
+    pdb.set_trace()
+    a=10
+    b=20
+    c=a*10
+    return render(request, 'home.html', {'result':c})
 
 
 def my_logout(request):
