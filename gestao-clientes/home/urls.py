@@ -1,4 +1,5 @@
 from django.urls import path
+from .views import home, my_logout
 from .views import home, my_logout, HomePageView
 from django.views.generic.base import TemplateView
 
