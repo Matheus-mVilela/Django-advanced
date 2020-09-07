@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Person
 from .forms import PersonForm
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 
 
 @login_required
@@ -46,4 +47,8 @@ def persons_delete(request, id):
 
 
 class PersonList(ListView):
+    model=Person
+
+
+class PersonDetail(DetailView):
     model=Person
