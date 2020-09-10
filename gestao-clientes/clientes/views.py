@@ -4,6 +4,8 @@ from .models import Person
 from .forms import PersonForm
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
+
 
 
 @login_required
@@ -52,3 +54,9 @@ class PersonList(ListView):
 
 class PersonDetail(DetailView):
     model=Person
+
+
+class PersonCreate(CreateView):
+    model=Person
+    fields=['first_name', 'last_name', 'age', 'salary', 'bio', 'photo']
+    success_url= '/clientes/personlist'

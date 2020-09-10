@@ -2,7 +2,7 @@ Listagem de clientes.
 <br>
 
 {% for person in object_list %}
-
-    {{ person }}
+ <li><ul><a href="{% url 'persondetail' person.pk %}">{{ person }}</a></ul></li>
+    
 
 {% endfor %}
