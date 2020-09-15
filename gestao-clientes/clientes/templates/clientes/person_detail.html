@@ -2,3 +2,7 @@
 {{object.last_name}}<br>
 {{object.age}}<br>
 {{object.salary}}
+
+<a href="{% url 'personupdate' person.pk %}">Atualizar</a>
+<a href="{% url 'personlist'%}">Voltar</a>
+<a href="{% url 'persondelete' person.pk %}"> Excluir</a>

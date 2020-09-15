@@ -3,6 +3,7 @@ Listagem de clientes.
 
 {% for person in object_list %}
  <li><ul><a href="{% url 'persondetail' person.pk %}">{{ person }}</a></ul></li>
-    
 
 {% endfor %}
+
+<a href="{% url 'personcreate' %}"> Novo Cliente</a>
