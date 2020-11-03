@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load filters%}
 
 
 {% block title %} Administracao {% endblock %}
@@ -20,8 +21,11 @@
                     <i class="fa fa-trash" aria-hidden="true"></i>
                 </a>
             </li>
-
+            {% empty %}
+            <li>Sorry, no client in this list.</li>
             {% endfor %}
+
+
         </ul>
 
         <br>
@@ -42,8 +46,24 @@
     </div>
 </div>
 
+{% filter force_escape|upper %}
+This text will be HTML-escaped, and will appear in all lowercase.
+{% endfilter %}
+
+{% now "jS F Y H:i"%}
+
+{%if persons|length >= 2%}
+Sua lista de clientes tem mais de duas pessoas.
+{%endif%}
+
+
+{{ footer_msg|my_filter }}
+
+{{12.4444|arredonda:1 }}
 
 {% endblock %}
+
+
 
 {% block footer %}
 {% include 'footer.html' %}
