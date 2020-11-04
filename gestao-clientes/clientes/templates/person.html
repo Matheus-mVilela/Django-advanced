@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load filters%}
-
+{% load my_tags %}
 
 {% block title %} Administracao {% endblock %}
 
@@ -60,6 +60,10 @@ Sua lista de clientes tem mais de duas pessoas.
 {{ footer_msg|my_filter }}
 
 {{12.4444|arredonda:1 }}
+
+<h3>hora do server</h3>
+{% current_time "%Y-%m-%d %I:%M %p" as the_time %}
+<p>The time is {{ the_time }}.</p>
 
 {% endblock %}
 
