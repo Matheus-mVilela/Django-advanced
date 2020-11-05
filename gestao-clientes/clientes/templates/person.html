@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load filters%}
-{% load my_tags %}
+
 
 {% block title %} Administracao {% endblock %}
 
@@ -16,7 +16,7 @@
         <ul class="list-group">
             {% for person in persons %}
             <li class="list-group-item">
-                <a href="{% url 'persons_update' person.id %}">{{ person.first_name }}</a>
+                <a href="{% url 'persons_update' person.id %}">{{ person.name_full|title }}</a>
                 <a href="{% url 'persons_delete' person.id %}" class="trash-item">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                 </a>
@@ -46,24 +46,10 @@
     </div>
 </div>
 
-{% filter force_escape|upper %}
-This text will be HTML-escaped, and will appear in all lowercase.
-{% endfilter %}
 
-{% now "jS F Y H:i"%}
-
-{%if persons|length >= 2%}
+{%if persons|length >= 20%}
 Sua lista de clientes tem mais de duas pessoas.
 {%endif%}
-
-
-{{ footer_msg|my_filter }}
-
-{{12.4444|arredonda:1 }}
-
-<h3>hora do server</h3>
-{% current_time "%Y-%m-%d %I:%M %p" as the_time %}
-<p>The time is {{ the_time }}.</p>
 
 {% endblock %}
 

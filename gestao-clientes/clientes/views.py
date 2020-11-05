@@ -13,10 +13,7 @@ from django.urls import reverse_lazy
 @login_required
 def persons_list(request):
     persons = Person.objects.all()
-    footer_msg = "Desenvolvimento web com Django 2.02"
-    return render(
-        request, "person.html", {"persons": persons, "footer_msg": footer_msg}
-    )
+    return render(request, "person.html", {"persons": persons})
 
 
 @login_required
