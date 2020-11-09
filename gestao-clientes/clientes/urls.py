@@ -8,6 +8,7 @@ from .views import PersonDetail
 from .views import PersonCreate
 from .views import PersonUpdate
 from .views import PersonDelete
+from .views import ProdutoBulk
 
 
 urlpatterns = [
@@ -26,4 +27,5 @@ urlpatterns = [
     path(
         "persondelete/<int:pk>/", PersonDelete.as_view(), name="persondelete"
     ),
+    path("personbulk/", ProdutoBulk.as_view(), name="personbulk"),
 ]
