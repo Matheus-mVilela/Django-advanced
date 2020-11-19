@@ -3,6 +3,19 @@
 {{object.age}}<br>
 {{object.salary}}
 
+<h2>Vendas</h2>
+{%for venda in vendas%}
+<p>Venda {{venda.id}}</p>
+<h3>Lista de produtos</h3>
+<ul>
+    {%for produto in venda.produtos.all%}
+    <li>{{produto.id}} - {{produto.descricao}}</li>
+    {%endfor%}
+</ul>
+{%endfor%}
+
+
+
 <a href="{% url 'personupdate' person.pk %}">Atualizar</a>
 <a href="{% url 'personlist'%}">Voltar</a>
 <a href="{% url 'persondelete' person.pk %}"> Excluir</a>
