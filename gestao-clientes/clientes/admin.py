@@ -3,16 +3,31 @@ from .models import Person, Documento, Venda, Produto
 
 
 class PersonAdmin(admin.ModelAdmin):
-    # fields = ("last_name","age","salary","bio","photo","doc",)
-    exclude = ("bio",)
+    fieldsets = (
+        (
+            'Dados Pessoais',
+            {'fields': ('first_name', 'last_name', 'doc', 'salary')},
+        ),
+        ('Dados Complementares', {'fields': ('age', 'bio', 'photo')}),
+    )
+
+    # fields = (
+    #    ('first_name', 'last_name'),
+    #    ('salary', 'age'),
+    #    'bio',
+    #    'photo',
+    #    'doc',
+    # )
+
+    # exclude = ('bio',)
     list_display = (
-        "first_name",
-        "last_name",
-        "age",
-        "salary",
-        "bio",
-        "photo",
-        "doc",
+        'first_name',
+        'last_name',
+        'age',
+        'salary',
+        'bio',
+        'photo',
+        'doc',
     )
 
 
