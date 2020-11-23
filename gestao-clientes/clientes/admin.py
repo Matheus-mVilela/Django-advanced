@@ -30,8 +30,14 @@ class PersonAdmin(admin.ModelAdmin):
         'doc',
     )
 
+    list_filter = ('age', 'salary')
+
+
+class VendaAdmin(admin.ModelAdmin):
+    list_filter = ('pessoa__doc',)
+
 
 admin.site.register(Person, PersonAdmin)
 admin.site.register(Documento)
-admin.site.register(Venda)
+admin.site.register(Venda, VendaAdmin)
 admin.site.register(Produto)
