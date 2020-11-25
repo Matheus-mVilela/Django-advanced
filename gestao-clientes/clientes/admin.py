@@ -50,6 +50,8 @@ class PersonAdmin(admin.ModelAdmin):
 class VendaAdmin(admin.ModelAdmin):
     list_filter = ('pessoa__doc',)
     list_display = ('id', 'pessoa', 'total_venda')
+    search_fields = ('id', 'pessoa__first_name', 'pessoa__doc__num_doc')
+    row_id_fields = ('pessoa',)
 
     def total_venda(self, obj):
         return obj.get_total()
