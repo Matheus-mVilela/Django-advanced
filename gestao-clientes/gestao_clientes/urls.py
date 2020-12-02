@@ -27,9 +27,10 @@ from django.urls import include, path
 
 
 urlpatterns = [
-    path("", include(home_urls)),
-    path("clientes/", include(clientes_urls)),
-    path("login/", LoginView.as_view(), name="login"),
-    path("admin/", admin.site.urls),
-    path("__debug__/", include(debug_toolbar.urls)),
+    path('', include(home_urls)),
+    path('clientes/', include(clientes_urls)),
+    path('login/', LoginView.as_view(), name='login'),
+    path('admin/', admin.site.urls),
+    path('__debug__/', include(debug_toolbar.urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

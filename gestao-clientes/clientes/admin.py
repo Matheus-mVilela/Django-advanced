@@ -48,15 +48,11 @@ class PersonAdmin(admin.ModelAdmin):
 
 
 class VendaAdmin(admin.ModelAdmin):
+    readonly_fields = ('valor',)
     list_filter = ('pessoa__doc',)
-    list_display = ('id', 'pessoa', 'total_venda')
+    list_display = ('id', 'pessoa', 'valor')
     search_fields = ('id', 'pessoa__first_name', 'pessoa__doc__num_doc')
     row_id_fields = ('pessoa',)
-
-    def total_venda(self, obj):
-        return obj.get_total()
-
-    total_venda.short_description = 'Total de Vendas'
 
 
 class ProdutoAdmin(admin.ModelAdmin):
@@ -66,4 +62,4 @@ class ProdutoAdmin(admin.ModelAdmin):
 admin.site.register(Person, PersonAdmin)
 admin.site.register(Documento)
 admin.site.register(Venda, VendaAdmin)
-admin.site.register(Produto)
+admin.site.register(Produto, ProdutoAdmin)
