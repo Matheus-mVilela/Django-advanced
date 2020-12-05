@@ -30,6 +30,7 @@ class PersonAdmin(admin.ModelAdmin):
         'tem_photo',
         'doc',
     )
+    search_fields = ('id', 'first_name')
 
     def tem_photo(self, obj):
         if obj.photo:
@@ -50,6 +51,8 @@ class PersonAdmin(admin.ModelAdmin):
 
 class VendaAdmin(admin.ModelAdmin):
     readonly_fields = ('valor',)
+    # raw_id_fields = ('pessoa',)
+    autocomplete_fields = ('pessoa',)
     list_filter = ('pessoa__doc',)
     list_display = ('id', 'pessoa', 'valor', 'nfe_emitida')
     search_fields = ('id', 'pessoa__first_name', 'pessoa__doc__num_doc')
