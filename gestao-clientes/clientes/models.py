@@ -48,6 +48,7 @@ class Venda(models.Model):
         Person, null=True, blank=True, on_delete=models.PROTECT
     )
     produtos = models.ManyToManyField(Produto, blank=True)
+    nfe_emitida = models.BooleanField(default=False)
 
     # @property
     # def valor(self):

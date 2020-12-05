@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Person, Documento, Venda, Produto
+from .actions import nfe_emitida, nfe_nao_emitida
 
 
 class PersonAdmin(admin.ModelAdmin):
@@ -50,9 +51,10 @@ class PersonAdmin(admin.ModelAdmin):
 class VendaAdmin(admin.ModelAdmin):
     readonly_fields = ('valor',)
     list_filter = ('pessoa__doc',)
-    list_display = ('id', 'pessoa', 'valor')
+    list_display = ('id', 'pessoa', 'valor', 'nfe_emitida')
     search_fields = ('id', 'pessoa__first_name', 'pessoa__doc__num_doc')
     row_id_fields = ('pessoa',)
+    actions = [nfe_emitida, nfe_nao_emitida]
 
 
 class ProdutoAdmin(admin.ModelAdmin):
