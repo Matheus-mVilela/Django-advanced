@@ -47,7 +47,6 @@ class Venda(models.Model):
     pessoa = models.ForeignKey(
         Person, null=True, blank=True, on_delete=models.PROTECT
     )
-    produtos = models.ManyToManyField(Produto, blank=True)
     nfe_emitida = models.BooleanField(default=False)
 
     # @property
@@ -70,3 +69,10 @@ class Venda(models.Model):
         self.valor = (self.valor - self.desconto) - self.impostos
 
         return super(Venda, self).save(*args, **kwargs)
+
+
+class ItensDoPedido(models.Model):
+    venda = models.ForeignKey(Venda, on_delete=models.CASCADE)
+    produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
+    quantidade = models.BooleanField()
+    desconto = models.DecimalField(max_digits=5, decimal_places=2)

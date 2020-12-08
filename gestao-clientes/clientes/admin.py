@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Person, Documento, Venda, Produto
+from .models import Person, Documento, Venda, Produto, ItensDoPedido
 from .actions import nfe_emitida, nfe_nao_emitida
 
 
@@ -59,16 +59,20 @@ class VendaAdmin(admin.ModelAdmin):
     row_id_fields = ('pessoa',)
     actions = [nfe_emitida, nfe_nao_emitida]
     # filter_vertical = ['produtos',]
-    filter_horizontal = [
-        'produtos',
-    ]
+    # filter_horizontal = ['produtos',]
 
 
-class ProdutoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'descricao', 'preco')
+class ItensDoPedidoAdmin(admin.ModelAdmin):
+    list_display = (
+        'venda',
+        'produto',
+        'quantidade',
+        'desconto',
+    )
 
 
 admin.site.register(Person, PersonAdmin)
 admin.site.register(Documento)
 admin.site.register(Venda, VendaAdmin)
-admin.site.register(Produto, ProdutoAdmin)
+admin.site.register(Produto,)
+admin.site.register(ItensDoPedido)
