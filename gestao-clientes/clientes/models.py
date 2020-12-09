@@ -9,6 +9,11 @@ class Documento(models.Model):
     def __str__(self):
         return self.num_doc
 
+    def doc_name(self,):
+        return self.person.first_name if self.person else self.num_doc
+
+    doc_name.short_description = 'Titular do Documento'
+
 
 class Person(models.Model):
     first_name = models.CharField(max_length=30)

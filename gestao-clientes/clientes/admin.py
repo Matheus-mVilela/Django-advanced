@@ -71,8 +71,15 @@ class ItensDoPedidoAdmin(admin.ModelAdmin):
     )
 
 
+class DocumentoAdmin(admin.ModelAdmin):
+    list_display = (
+        'doc_name',
+        'num_doc',
+    )
+
+
 admin.site.register(Person, PersonAdmin)
-admin.site.register(Documento)
+admin.site.register(Documento, DocumentoAdmin)
 admin.site.register(Venda, VendaAdmin)
 admin.site.register(Produto,)
 admin.site.register(ItensDoPedido)
