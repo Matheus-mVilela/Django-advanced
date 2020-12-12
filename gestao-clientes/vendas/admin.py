@@ -1,7 +1,17 @@
 from django.contrib import admin
 from .models import Venda
-from .models import ItensDoPedido
+from .models import ItenDoPedido
 from .actions import nfe_emitida, nfe_nao_emitida
+
+
+# class ItenDopedidoInline(admin.TabularInline):
+#   model = ItenDoPedido
+#  extra = 1
+
+
+class ItenDopedidoInline(admin.StackedInline):
+    model = ItenDoPedido
+    extra = 1
 
 
 class VendaAdmin(admin.ModelAdmin):
@@ -15,6 +25,7 @@ class VendaAdmin(admin.ModelAdmin):
     actions = [nfe_emitida, nfe_nao_emitida]
     # filter_vertical = ['produtos',]
     # filter_horizontal = ['produtos',]
+    inlines = [ItenDopedidoInline]
 
 
 class ItensDoPedidoAdmin(admin.ModelAdmin):
@@ -27,4 +38,4 @@ class ItensDoPedidoAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Venda, VendaAdmin)
-admin.site.register(ItensDoPedido)
+admin.site.register(ItenDoPedido)

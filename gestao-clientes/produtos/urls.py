@@ -2,5 +2,5 @@ from django.urls import path
 
 
 urlpatterns = [
-    # comentario
+    # path('list/', persons_list, name='person_list'),
 ]

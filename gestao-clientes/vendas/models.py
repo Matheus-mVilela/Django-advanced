@@ -37,7 +37,7 @@ class Venda(models.Model):
         return super(Venda, self).save(*args, **kwargs)
 
 
-class ItensDoPedido(models.Model):
+class ItenDoPedido(models.Model):
     venda = models.ForeignKey(Venda, on_delete=models.CASCADE)
     produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
     quantidade = models.BooleanField()
