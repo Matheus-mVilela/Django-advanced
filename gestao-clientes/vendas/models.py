@@ -7,11 +7,10 @@ from django.db.models import Sum, F, FloatField, Max, Aggregate
 
 
 class Venda(models.Model):
+    valor_total = models.FloatField(null=True)
     desconto = models.FloatField()
     impostos = models.FloatField()
-    pessoa = models.ForeignKey(
-        Person, null=True, blank=True, on_delete=models.PROTECT
-    )
+    pessoa = models.ForeignKey(Person, null=True, blank=True, on_delete=models.PROTECT)
     nfe_emitida = models.BooleanField(default=False)
 
     @property
@@ -38,17 +37,25 @@ class Venda(models.Model):
     #   return (valor - self.desconto) - self.impostos
 
     def __str__(self):
-        return self.numero
 
-        # def save(self, *args, **kwargs):
-        #   self.valor = 0
-        #  super(Venda, self).save(*args, **kwargs)
-        # for produto in self.produtos.all():
-        #    self.valor += produto.preco
+        return f'{self.pk}'
 
-        # self.valor = (self.valor - self.desconto) - self.impostos
+    def save(self, *args, **kwargs):
 
-    # return super(Venda, self).save(*args, **kwargs)
+        super(Venda, self).save(*args, **kwargs)
+        tot = self.itendopedido_set.all().aggregate(
+            tot_ped=Sum(
+                (F('quantidade') * F('produto__preco')) - F('desconto'),
+                output_field=FloatField(),
+            )
+        )['tot_ped']
+
+        if tot:
+            self.valor_total = tot - self.desconto - self.impostos
+        else:
+            self.valor_total = 0
+
+        return super(Venda, self).save(*args, **kwargs)
 
 
 class ItenDoPedido(models.Model):

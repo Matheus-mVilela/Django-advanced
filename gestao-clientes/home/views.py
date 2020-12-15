@@ -17,20 +17,17 @@ def my_logout(request):
 
 
 class HomePageView(TemplateView):
-    template_name= 'home3.html'
+    template_name = 'home3.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['now'] = timezone.now()
-        return context     
+        return context
 
 
 class MyView(View):
-
     def get(self, request, *args, **kwargs):
-     return render(request, 'home3.html')
+        return render(request, 'home3.html')
 
     def post(self, request, *args, **kwargs):
         return HttpResponse('Teste')
-
-         

@@ -3,4 +3,3 @@ from .models import Produto
 
 
 admin.site.register(Produto)
-

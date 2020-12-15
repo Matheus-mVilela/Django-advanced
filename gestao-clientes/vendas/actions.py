@@ -10,4 +10,3 @@ def nfe_nao_emitida(modeladmin, request, queryset):
 
 
 nfe_nao_emitida.short_description = 'NF-e não emitida'
-

@@ -5,7 +5,7 @@ register = template.Library()
 
 @register.filter
 def my_filter(data):
-    return data + "-" + "Alterado pelo filter"
+    return data + '-' + 'Alterado pelo filter'
 
 
 @register.filter

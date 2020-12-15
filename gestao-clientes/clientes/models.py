@@ -19,9 +19,7 @@ class Person(models.Model):
     age = models.IntegerField()
     salary = models.DecimalField(max_digits=5, decimal_places=2)
     bio = models.TextField()
-    photo = models.ImageField(
-        upload_to='clients_photos', null=True, blank=True
-    )
+    photo = models.ImageField(upload_to='clients_photos', null=True, blank=True)
     doc = models.OneToOneField(
         Documento, null=True, blank=True, on_delete=models.CASCADE
     )
@@ -32,4 +30,3 @@ class Person(models.Model):
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
-

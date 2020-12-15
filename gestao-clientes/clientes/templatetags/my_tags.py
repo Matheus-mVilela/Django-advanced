@@ -6,7 +6,7 @@ register = template.Library()
 
 @register.simple_tag
 def footer_msg():
-    return "Dajngo advanced 2.0x"
+    return 'Dajngo advanced 2.0x'
 
 
 @register.simple_tag

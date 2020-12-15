@@ -17,15 +17,9 @@ urlpatterns = [
     path('update/<int:id>/', persons_update, name='persons_update'),
     path('delete/<int:id>/', persons_delete, name='persons_delete'),
     path('personlist/', PersonList.as_view(), name='personlist'),
-    path(
-        'persondetail/<int:pk>/', PersonDetail.as_view(), name='persondetail'
-    ),
+    path('persondetail/<int:pk>/', PersonDetail.as_view(), name='persondetail'),
     path('personcreate/', PersonCreate.as_view(), name='personcreate'),
-    path(
-        'personupdate/<int:pk>/', PersonUpdate.as_view(), name='personupdate'
-    ),
-    path(
-        'persondelete/<int:pk>/', PersonDelete.as_view(), name='persondelete'
-    ),
+    path('personupdate/<int:pk>/', PersonUpdate.as_view(), name='personupdate'),
+    path('persondelete/<int:pk>/', PersonDelete.as_view(), name='persondelete'),
     path('personbulk/', ProdutoBulk.as_view(), name='personbulk'),
 ]
