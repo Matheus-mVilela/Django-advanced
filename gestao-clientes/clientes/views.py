@@ -12,6 +12,7 @@ from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
 from django.urls import reverse_lazy
 from django.http import HttpResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 @login_required
@@ -61,7 +62,7 @@ def persons_delete(request, id):
     return render(request, 'person_delete_confirm.html', {'person': person})
 
 
-class PersonList(ListView):
+class PersonList(LoginRequiredMixin, ListView):
     model = Person
 
 
@@ -98,7 +99,7 @@ class PersonDelete(DeleteView):
         return reverse_lazy('personlist')
 
 
-class ProdutoBulk(View):
+class ProdutoBulk(LoginRequiredMixin, View):
     def get(self, request):
         produtos = [
             'Melão',
@@ -107,6 +108,7 @@ class ProdutoBulk(View):
             'Maça',
             'Pera',
             'Uva',
+            'Carambola',
         ]
         list_produtos = []
 
