@@ -18,6 +18,9 @@ class Venda(models.Model):
 
     objects = VendaManager()
 
+    class Meta:
+        permissions = (('setar_nfe', 'User set NF-e'),)
+
     @property
     def valor(self):
 
