@@ -1,9 +1,16 @@
 from django.shortcuts import render
 from django.views import View
 from vendas.models import Venda
+from django.http import HttpResponse
 
 
 class DashBoard(View):
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perm('vendas.ver_dashboard'):
+            return HttpResponse('Acesso negado')
+
+        return super(DashBoard, self).dispatch(request, *args, **kwargs)
+
     def get(self, request):
         data = {}
         data['media'] = Venda.objects.media()
