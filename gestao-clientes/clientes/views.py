@@ -12,7 +12,10 @@ from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
 from django.urls import reverse_lazy
 from django.http import HttpResponse
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin,
+    PermissionRequiredMixin,
+)
 
 
 @login_required
@@ -91,11 +94,13 @@ class PersonUpdate(UpdateView):
     success_url = reverse_lazy('personlist')
 
 
-class PersonDelete(DeleteView):
+class PersonDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+    permission_required = ('clientes.del_person',)
+
     model = Person
+
     # success_url = reverse_lazy("personlist")
     def get_success_url(self):
-
         return reverse_lazy('personlist')
 
 
