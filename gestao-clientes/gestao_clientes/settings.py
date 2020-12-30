@@ -142,8 +142,8 @@ STATIC_URL = '/static/'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'seue-mail@gmail.com'
-EMAIL_HOST_PASSWORD = 'senha do e-mail'
+EMAIL_HOST_USER = 'matheusvao15@gmail.com'
+EMAIL_HOST_PASSWORD = '3223vilela1998'
 EMAIL_USE_TLS = True
 
 # AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')

@@ -6,19 +6,20 @@
 
 {% block main %}
 
-    <h2>Login</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form|bootstrap }}
-        <button type="submit" class="btn btn-info">Login</button>
-    </form>
+<h2>Login</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form|bootstrap }}
+  <button type="submit" class="btn btn-info">Login</button>
+</form>
+<a href="{% url 'password_reset' %}">Esqueci minha senha! </a>
 
 {% endblock %}
 
 {% block footer %}
-    <footer class="footer">
-      <div class="container">
-        <span class="text-muted">Desenvolvimento web com Django 2.x</span>
-      </div>
-    </footer>
+<footer class="footer">
+  <div class="container">
+    <span class="text-muted">Desenvolvimento web com Django 2.x</span>
+  </div>
+</footer>
 {% endblock %}
