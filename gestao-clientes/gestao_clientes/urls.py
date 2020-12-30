@@ -25,6 +25,7 @@ from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import LoginView
 from django.conf import settings
 from django.urls import include, path
+from django.contrib.auth import urls
 
 
 urlpatterns = [
@@ -34,6 +35,7 @@ urlpatterns = [
     path('vendas/', include(vendas_urls)),
     path('login/', LoginView.as_view(), name='login'),
     path('admin/', admin.site.urls),
+    path('acounts/', include('django.contrib.auth.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 admin.site.site_header = 'Gestão Clientes'
