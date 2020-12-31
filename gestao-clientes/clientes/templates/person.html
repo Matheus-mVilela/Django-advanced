@@ -12,6 +12,7 @@
     </div>
 
     <div class="col-6">
+        <h4>{{ request.session.message }}</h4>
         <h3>Listagem de clientes</h3>
         <ul class="list-group">
             {% for person in persons %}
@@ -36,7 +37,7 @@
 
     <div class="col">
         {% if user.is_authenticated %}
-        <p>Ola {{user.username }}
+        <p>
             <a href="{% url 'logout' %}">
                 <span class="badge badge-dark">Sair</span>
             </a>
