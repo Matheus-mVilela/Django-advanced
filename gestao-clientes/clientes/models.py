@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.mail import send_mail
+from django.core.mail import send_mail, mail_admins
 from django.template.loader import render_to_string
 
 
@@ -47,6 +47,13 @@ class Person(models.Model):
             email_txt,
             'matheusvao15@gmail.com',
             ['matheus_vilela@icloud.com'],
+            html_message=email_html,
+            fail_silently=True,
+        )
+
+        mail_admins(
+            'Novo cliente cadastrado.',
+            email_txt,
             html_message=email_html,
             fail_silently=True,
         )

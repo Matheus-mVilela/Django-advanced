@@ -141,6 +141,9 @@ STATICFILES_DIRS = [
 
 STATIC_URL = '/static/'
 
+ADMINS = [
+    ('Matheus', 'matheusvao15@gmail.com'),
+]
 EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_PORT = config('EMAIL_PORT')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
