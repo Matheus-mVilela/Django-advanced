@@ -22,7 +22,9 @@ regex==2020.11.13
 s3transfer==0.1.13
 six==1.11.0
 sqlparse==0.4.1
+-r requirements.txt
 static3==0.7.0
 toml==0.10.2
 typed-ast==1.4.1
 typing-extensions==3.7.4.3
+django-allauth==0.44.0
