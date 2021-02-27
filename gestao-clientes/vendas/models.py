@@ -3,18 +3,22 @@ from django.db.models.signals import m2m_changed
 from django.dispatch import receiver
 from clientes.models import Person
 from produtos.models import Produto
+from vendas import choices
 from .managers import VendaManager
 from django.db.models import Sum, F, FloatField, Max, Aggregate, Avg
+from django.contrib.auth.models import User
 
 
 class Venda(models.Model):
     valor_total = models.FloatField(null=True)
-    desconto = models.FloatField()
-    impostos = models.FloatField()
     pessoa = models.ForeignKey(
         Person, null=True, blank=True, on_delete=models.PROTECT
     )
     nfe_emitida = models.BooleanField(default=False)
+
+    user = models.ForeignKey(
+        User, null=True, blank=True, on_delete=models.PROTECT
+    )
 
     objects = VendaManager()
 
@@ -29,13 +33,13 @@ class Venda(models.Model):
 
         tot = self.itendopedido_set.all().aggregate(
             tot_ped=Sum(
-                (F('quantidade') * F('produto__preco')) - F('desconto'),
+                (F('quantidade') * F('produto__preco')),
                 output_field=FloatField(),
             )
         )['tot_ped']
 
         if tot:
-            return tot - self.desconto - self.impostos
+            return tot
         else:
             return 0
 

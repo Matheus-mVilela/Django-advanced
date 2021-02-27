@@ -1,9 +1,10 @@
 from django import shortcuts, views
 from django.views import View
-from vendas.models import Venda
 from django.http import HttpResponse
-from . import forms
 from clientes.models import Person
+from vendas.models import Venda, ItenDoPedido
+from produtos.models import Produto
+from vendas import choices, forms
 
 
 class DashBoard(View):
@@ -25,19 +26,30 @@ class DashBoard(View):
         return shortcuts.render(request, 'vendas/dashboard.html', data,)
 
 
-class Vendas(views.View):
+class CreateVendaView(views.View):
     def get(self, request):
-        person = Person.objects.all()
-        venda = forms.VendaForm()
-        venda_list = Venda.objects.all()
+        produto = Produto.objects.all().order_by('-id')
+        produto_form = forms.ProdutosForm()
 
         return shortcuts.render(
             request,
-            'testevendas.html',
-            context={
-                'venda': venda,
-                'person': person,
-                'venda_list': venda_list,
-            },
+            'createvenda.html',
+            context={'produto': produto, 'produto_form': produto_form,},
         )
 
+    def post(self, request):
+        produto_form = forms.ProdutosForm(request.POST)
+
+        if not produto_form.is_valid:
+            return
+
+        venda = Venda.objects.create(user_id=request.user.pk)
+        item = ItenDoPedido.objects.create(
+            venda=venda,
+            produto_id=produto_form.data['produto_id'],
+            quantidade=produto_form.data['quantidade'],
+            desconto=produto_form.data['desconto'],
+        )
+        venda.valor_total = item.produto.preco * item.quantidade
+        venda.save()
+        return shortcuts.redirect('/admin/vendas/vendas')

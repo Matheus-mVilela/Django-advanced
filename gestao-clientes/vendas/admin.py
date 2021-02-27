@@ -22,7 +22,7 @@ class VendaAdmin(admin.ModelAdmin):
     list_display = ('id', 'pessoa', 'valor', 'nfe_emitida', 'valor_total')
     search_fields = ('id', 'pessoa__first_name', 'pessoa__doc__num_doc')
     row_id_fields = ('pessoa',)
-    exclude = ('valor_total',)
+    exclude = ('valor_total', 'user')
     actions = [nfe_emitida, nfe_nao_emitida]
     # filter_vertical = ['produtos',]
     # filter_horizontal = ['produtos',]

@@ -1,8 +1,11 @@
 from django import forms
 
 
-class VendaForm(forms.Form):
-    venda_id = forms.IntegerField()
-    pessoa_id = forms.IntegerField()
-    desconto = forms.FloatField(label='Desconto')
-    imposto = forms.FloatField(label='Iposto')
+class CriarVendaForm(forms.Form):
+    pass
+
+
+class ProdutosForm(forms.Form):
+    produto_id = forms.IntegerField()
+    quantidade = forms.IntegerField()
+    desconto = forms.FloatField()

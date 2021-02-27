@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+<div class="row">
+    <div class="col-3">
+        <h1>Venda de {{pessoa}}</h1>
+
+        <form action="{% url 'create-vendas' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <select class="custom-select" name="produto_id" id="inputGroupSelect01">
+                <option selected disabled>------</option>
+                {% for produto in produto %}
+                <option value="{{produto.id}}" required id="id_produto_id">{{produto}}
+                </option>
+                {% endfor%}
+            </select>
+            </tr>
+            <tr>
+                <th><label for="id_quantidade">Quantidade:</label></th>
+                <td><input type="number" name="quantidade" required id="id_quantidade"></td>
+            </tr>
+            <tr>
+                <th><label for="id_desconto">Desconto:</label></th>
+                <td><input type="number" name="desconto" step="any" required id="id_desconto"></td>
+            </tr>
+            <button class=" margin-btn-sale btn btn-success" type="submit">Vender</button>
+        </form>
+    </div>
+    <div class="col-6">
+
+    </div>
+</div>
+
+
+
+{% endblock %}

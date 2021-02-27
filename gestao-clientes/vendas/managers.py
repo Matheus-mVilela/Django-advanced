@@ -6,9 +6,6 @@ class VendaManager(models.Manager):
     def media(self):
         return self.all().aggregate(Avg('valor_total'))['valor_total__avg']
 
-    def media_desconto(self):
-        return self.all().aggregate(Avg('desconto'))['desconto__avg']
-
     def max(self):
         return self.all().aggregate(Max('valor_total'))['valor_total__max']
 
