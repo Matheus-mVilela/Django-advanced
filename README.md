@@ -1,3 +1,4 @@
 Iniciando projeto django-adjanced.
 
-Correção do ci anterior errado.
+Correção do ci anterior errado
+test commit.
