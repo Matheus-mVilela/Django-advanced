@@ -1,6 +1,6 @@
 from django import shortcuts, views
 from django.views import View
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse 
 from clientes.models import Person
 from vendas.models import Venda, ItenDoPedido
 from produtos.models import Produto
@@ -29,12 +29,13 @@ class DashBoard(View):
 class CreateVendaView(views.View):
     def get(self, request):
         produto = Produto.objects.all().order_by('-id')
-        produto_form = forms.ProdutosForm()
+        produto_form = forms.ProdutosForm() 
+        pessoa = request.user
 
         return shortcuts.render(
             request,
             'createvenda.html',
-            context={'produto': produto, 'produto_form': produto_form,},
+            context={'produto': produto, 'produto_form': produto_form, 'pessoa':pessoa},
         )
 
     def post(self, request):
@@ -53,3 +54,10 @@ class CreateVendaView(views.View):
         venda.valor_total = item.produto.preco * item.quantidade
         venda.save()
         return shortcuts.redirect('/admin/vendas/vendas')
+
+
+def api(request):
+    _dict= {'name':'Matheus', 'idate':22, 'salario': 300}
+    _list= [1,2,3,4]
+    #padrao de resposta jsonresponse e dicit, com safe=false ele passa outras estruturas.
+    return JsonResponse( _list, status=200, safe=False)
