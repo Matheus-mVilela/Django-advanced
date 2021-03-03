@@ -28,12 +28,14 @@ from django.urls import include, path
 from django.contrib.auth import urls
 
 
+
 urlpatterns = [
     path('', include(home_urls)),
     path('clientes/', include(clientes_urls)),
     path('produtos/', include(produtos_urls)),
     path('vendas/', include(vendas_urls)),
     path('login/', LoginView.as_view(), name='login'),
+    path('jet/', include('jet.urls', 'jet')),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('acounts/', include('django.contrib.auth.urls')),
