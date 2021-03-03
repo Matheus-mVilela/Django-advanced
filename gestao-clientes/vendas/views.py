@@ -73,7 +73,11 @@ def api(request):
     for produto in produtos:
         clist.append(model_to_dict(produto))
     
-
-
-
     return JsonResponse(clist, status=200, safe=False)
+
+
+class ApiCbvView(views.View):
+    def get(self,request):
+        data = {'Matheus':'Matheus'}
+        #apicbv basicamente a mesma coisa que e feito em def
+        return JsonResponse(data, status=200)
