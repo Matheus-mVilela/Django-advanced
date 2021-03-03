@@ -5,6 +5,7 @@ from clientes.models import Person
 from vendas.models import Venda, ItenDoPedido
 from produtos.models import Produto
 from vendas import choices, forms
+from django.forms import model_to_dict
 
 
 class DashBoard(View):
@@ -60,4 +61,19 @@ def api(request):
     _dict= {'name':'Matheus', 'idate':22, 'salario': 300}
     _list= [1,2,3,4]
     #padrao de resposta jsonresponse e dicit, com safe=false ele passa outras estruturas.
-    return JsonResponse( _list, status=200, safe=False)
+    produto = Produto.objects.last()
+    # cdict= {'descricao': produto.descricao, 'preco': produto.preco}
+
+    cdict = model_to_dict(produto)
+
+    clist=[]
+
+    produtos = Produto.objects.all()
+    
+    for produto in produtos:
+        clist.append(model_to_dict(produto))
+    
+
+
+
+    return JsonResponse(clist, status=200, safe=False)
