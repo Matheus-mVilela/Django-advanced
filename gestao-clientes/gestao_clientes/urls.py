@@ -36,7 +36,7 @@ urlpatterns = [
     path('vendas/', include(vendas_urls)),
     path('login/', LoginView.as_view(), name='login'),
     # path('jet/', include('jet.urls', 'jet')),
-    path('grappelli/', include('grappelli.urls')),
+    # path('grappelli/', include('grappelli.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('acounts/', include('django.contrib.auth.urls')),
