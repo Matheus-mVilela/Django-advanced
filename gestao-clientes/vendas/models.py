@@ -82,5 +82,7 @@ class ItenDoPedido(models.Model):
     class Meta:
         verbose_name = 'Item do pedido'
         verbose_name_plural = 'Itens do pedido'
+        unique_together= (("venda", "produto"))
+
     def __str__(self):
         return f'{self.venda.pk}-{self.produto.descricao}'
