@@ -27,10 +27,12 @@ class Person(models.Model):
     doc = models.OneToOneField(
         Documento, null=True, blank=True, on_delete=models.CASCADE
     )
+    telefone = models.CharField(max_length=20, null=True, blank=True)
 
     class Meta:
         permissions = (('del_person', 'Apagar User'),)
-
+        unique_together=(("first_name", "telefone"))
+        
     @property
     def name_full(self):
         return self.first_name + ' ' + self.last_name

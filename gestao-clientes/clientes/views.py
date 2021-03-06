@@ -123,3 +123,4 @@ class ProdutoBulk(LoginRequiredMixin, View):
 
         Produto.objects.bulk_create(list_produtos)
         return HttpResponse('Status_200')
+

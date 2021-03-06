@@ -27,7 +27,7 @@ class Venda(models.Model):
             ('setar_nfe', 'User set NF-e'),
             ('ver_dashboard', 'Pode ver o DASHBOARD'),
         )
-
+        
     @property
     def valor(self):
 
