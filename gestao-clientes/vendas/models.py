@@ -3,13 +3,22 @@ from django.db.models.signals import m2m_changed
 from django.dispatch import receiver
 from clientes.models import Person
 from produtos.models import Produto
-from vendas import choices
 from .managers import VendaManager
 from django.db.models import Sum, F, FloatField, Max, Aggregate, Avg
 from django.contrib.auth.models import User
 
 
 class Venda(models.Model):
+    ABERTA = 'AB'
+    FECHADA = 'FC'
+    PROCESSANDO = 'PC'
+
+    STATUS = [
+        (ABERTA, 'Aberta'),
+        (FECHADA, 'Fechada'),
+        (PROCESSANDO, 'Processando'),
+    ]
+
     valor_total = models.FloatField(null=True)
     pessoa = models.ForeignKey(
         Person, null=True, blank=True, on_delete=models.PROTECT
@@ -19,6 +28,9 @@ class Venda(models.Model):
     user = models.ForeignKey(
         User, null=True, blank=True, on_delete=models.PROTECT
     )
+    status = models.CharField(
+        choices=STATUS, default=PROCESSANDO, max_length=2
+    )
 
     objects = VendaManager()
 
@@ -27,7 +39,7 @@ class Venda(models.Model):
             ('setar_nfe', 'User set NF-e'),
             ('ver_dashboard', 'Pode ver o DASHBOARD'),
         )
-        
+
     @property
     def valor(self):
 
@@ -82,7 +94,7 @@ class ItenDoPedido(models.Model):
     class Meta:
         verbose_name = 'Item do pedido'
         verbose_name_plural = 'Itens do pedido'
-        unique_together= (("venda", "produto"))
+        unique_together = ('venda', 'produto')
 
     def __str__(self):
         return f'{self.venda.pk}-{self.produto.descricao}'
