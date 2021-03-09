@@ -78,7 +78,7 @@ class Venda(models.Model):
         )['tot_ped']
 
         if tot:
-            self.valor_total = tot - self.desconto - self.impostos
+            self.valor_total = tot
         else:
             self.valor_total = 0
 
