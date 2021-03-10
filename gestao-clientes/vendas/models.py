@@ -25,9 +25,6 @@ class Venda(models.Model):
     )
     nfe_emitida = models.BooleanField(default=False)
 
-    user = models.ForeignKey(
-        User, null=True, blank=True, on_delete=models.PROTECT
-    )
     status = models.CharField(
         choices=STATUS, default=PROCESSANDO, max_length=2
     )
