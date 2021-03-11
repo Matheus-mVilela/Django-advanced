@@ -6,6 +6,9 @@ from vendas.models import Venda, ItenDoPedido
 from produtos.models import Produto
 from vendas import forms
 from django.forms import model_to_dict
+import logging
+
+logger = logging.getLogger('django')
 
 
 class DashBoard(View):
@@ -16,6 +19,13 @@ class DashBoard(View):
         return super(DashBoard, self).dispatch(request, *args, **kwargs)
 
     def get(self, request):
+        logger.debug('Acesso ao dashboard')
+        try:
+            1 / 0
+
+        except Exception as error:
+            logger.error(str(error))
+
         data = {}
         data['media'] = Venda.objects.media()
         data['max'] = Venda.objects.max()
