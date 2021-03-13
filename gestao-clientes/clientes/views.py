@@ -20,7 +20,25 @@ from django.contrib.auth.mixins import (
 
 @login_required
 def persons_list(request):
-    persons = Person.objects.all()
+    first_name = request.GET.get('first_name', None)
+    last_name = request.GET.get('last_name', None)
+
+    # busca tem que atender as duas condições para ocorrer.
+    # if first_name or last_name:
+    #     persons = Person.objects.filter(
+    #         first_name__icontains=first_name, last_name__icontains=last_name
+    #     )
+    # else:
+    #     persons = Person.objects.all()
+
+    # buscar um ou outro primeiro pelo nome se nao acher nada busca pelo sobrenome
+    if first_name or last_name:
+        persons = Person.objects.filter(
+            first_name__icontains=first_name
+        ) | Person.objects.filter(last_name__icontains=last_name)
+    else:
+        persons = Person.objects.all()
+
     return render(request, 'person.html', {'persons': persons})
 
 
